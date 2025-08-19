@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: todo-list
+
+  # H2 Database
+  datasource:
+    url: jdbc:h2:mem:tododb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # JPA/Hibernate
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  # Spring Security JWT (NOVO)
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-value: ${jwt.secret}
+
+# JWT Configurations (NOVO)
+jwt:
+  secret: yourSuperSecretKeyWithAtLeast256BitsLengthForHS256Algorithm
+  expiration: 86400000 # 24 hours in milliseconds

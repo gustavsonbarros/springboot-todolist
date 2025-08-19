@@ -7,8 +7,7 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">To-Do List</h1>
-
+    <h1 class="mb-4">To-Do List</h1
     <form th:action="@{/tasks}" th:object="${newTask}" method="post">
         <div class="input-group mb-3">
             <input type="text" class="form-control" th:field="*{description}"
