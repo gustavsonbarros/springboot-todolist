@@ -1,6 +1,7 @@
 package com.example.todolist.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,11 +10,16 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    @NotBlank(message = "A descrição não pode estar em branco")
     private String description;
+
     private boolean completed;
+
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // Construtores, getters e setters
+    // Construtores
     public Task() {
         this.createdAt = LocalDateTime.now();
     }
@@ -24,7 +30,7 @@ public class Task {
         this.createdAt = LocalDateTime.now();
     }
 
-
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -53,6 +59,7 @@ public class Task {
         return createdAt;
     }
 
+    // Remova o setter para createdAt ou mantenha como está
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
